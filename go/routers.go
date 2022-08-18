@@ -10,6 +10,9 @@ package swagger
 
 import (
 	"fmt"
+	"go-server-server-generated/go/domain/article"
+	"go-server-server-generated/go/domain/user"
+	"go-server-server-generated/go/global"
 	"net/http"
 	"strings"
 
@@ -30,7 +33,7 @@ func NewRouter() *mux.Router {
 	for _, route := range routes {
 		var handler http.Handler
 		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
+		handler = global.Logger(handler, route.Name)
 
 		router.
 			Methods(route.Method).
@@ -58,83 +61,83 @@ var routes = Routes{
 		"AddArticle",
 		strings.ToUpper("Post"),
 		"/article",
-		AddArticle,
+		article.AddArticle,
 	},
 
 	Route{
 		"DeleteArticle",
 		strings.ToUpper("Delete"),
 		"/article/{id}",
-		DeleteArticle,
+		article.DeleteArticle,
 	},
 
 	Route{
 		"GetArticle",
 		strings.ToUpper("Get"),
 		"/article/{id}",
-		GetArticle,
+		article.GetArticle,
 	},
 
 	Route{
 		"GetArticles",
 		strings.ToUpper("Get"),
 		"/article",
-		GetArticles,
+		article.GetArticles,
 	},
 
 	Route{
 		"UpdateArticle",
 		strings.ToUpper("Put"),
 		"/article/{id}",
-		UpdateArticle,
+		article.UpdateArticle,
 	},
 
 	Route{
 		"CreateUser",
 		strings.ToUpper("Post"),
 		"/user",
-		CreateUser,
+		user.CreateUser,
 	},
 
 	Route{
 		"DeleteUser",
 		strings.ToUpper("Delete"),
 		"/user/{username}",
-		DeleteUser,
+		user.DeleteUser,
 	},
 
 	Route{
 		"GetUserByName",
 		strings.ToUpper("Get"),
 		"/user/{username}",
-		GetUserByName,
+		user.GetUserByName,
 	},
 
 	Route{
 		"GetUsers",
 		strings.ToUpper("Get"),
 		"/user",
-		GetUsers,
+		user.GetUsers,
 	},
 
 	Route{
 		"LoginUser",
 		strings.ToUpper("Get"),
 		"/user/login",
-		LoginUser,
+		user.LoginUser,
 	},
 
 	Route{
 		"LogoutUser",
 		strings.ToUpper("Get"),
 		"/user/logout",
-		LogoutUser,
+		user.LogoutUser,
 	},
 
 	Route{
 		"UpdateUser",
 		strings.ToUpper("Put"),
 		"/user/{username}",
-		UpdateUser,
+		user.UpdateUser,
 	},
 }
